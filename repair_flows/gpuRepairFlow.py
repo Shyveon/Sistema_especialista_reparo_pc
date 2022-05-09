@@ -1,16 +1,20 @@
-import typing
 from interfaceFlow import InterfaceFlow
-from rule import Rule
+from gpuRepairFlowRules import gpuRepairRules
 
 class GpuRepairFlow(InterfaceFlow):
     
-    list_rules: list[Rule] = [
-        Rule('O seu monitor está rosa, apagado ou irregular?', (), None),
-        Rule('A imagem está ondulada?', (), None),
-        Rule('Aparecem linhas sólidas ou faixas')
-    ]
-    firstRule: Rule = Rule('O seu monitor é de tubo?', (list_rules[0], list_rules[1]), None)
-    
     def execute(self) -> None:
-        """Override do execute de InterfaceFlow"""
+        current_rule = gpuRepairRules.first_rule
+        while (True):
+            print(f'{current_rule.text}\n')
+            if (current_rule.next.count == 0):
+                break
+            user_in = input('Y/N')
+            if (user_in.lower() == 'y'):
+                current_rule = current_rule.next[1]
+            elif (user_in.lower() == 'n'):
+                current_rule = current_rule.next[0]
+            else: 
+                continue
+        print(f'Resposta: {current_rule.text}\n')
 
