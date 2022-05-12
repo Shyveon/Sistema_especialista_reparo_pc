@@ -1,6 +1,6 @@
 from rule import Rule
 
-end_rules: list[Rule] = [
+nodes: list[Rule] = [
     Rule('Retroiluminação ou o inversor da lâmpada flourescente', (), None),
     Rule('Interferência. Verifique a área, verifique os periféricos e também veja se há transformadores perto do monitor', (), None),
     Rule('Taxa de atualização errada, abaixe a resolução da tela e desligue as luzes da sala.', (), None),
@@ -20,18 +20,24 @@ end_rules: list[Rule] = [
     Rule('Placas de vídeo vão diminuir o processamento quando estão sobre-aquecendo. Verifique as ventoinhas e o dissipador de calor, tente melhorar a circulação de ar no geral.', (), None)
 ]
 
-question_rules: list[Rule] = [
-    Rule('Erros de OpenGL?', (end_rules[13], end_rules[14]), None),
-    Rule('Queda de quadros quando a placa de vídeo está quente?', (end_rules[-2], end_rules[-1]), None),
-    Rule('Tamanho de texto pequeno, tela borrada ou mostrando apenas parte do desktop?', (question_rules[0], end_rules[-5]), None),
-    Rule('Fragmentos de imagem ou lixo na tela?', (question_rules[2], end_rules[-6]), None),
-    Rule('OK quando a resolução é diminuida?', (question_rules[1], end_rules[-7]), None),
+edges: dict[Rule] = {
+    'opengl':Rule('Erros de OpenGL?', (nodes[13], nodes[14]), None),
+    'fps_loss':Rule('Queda de quadros quando a placa de vídeo está quente?', (nodes[-2], nodes[-1]), None),
+    Rule('Tamanho de texto pequeno, tela borrada ou mostrando apenas parte do desktop?', (question_rules[0], nodes[-5]), None),
+    Rule('Fragmentos de imagem ou lixo na tela?', (question_rules[2], nodes[-6]), None),
+    Rule('OK quando a resolução é diminuida?', (question_rules[1], nodes[-7]), None),
     Rule('Lag no jogo ou travadinhas?', (question_rules[3], question_rules[4]), None),
-    Rule('Tentou restaurar o sistema e verificar por malware?', (end_rules[-8], end_rules[-9]), None),
+    Rule('Tentou restaurar o sistema e verificar por malware?', (nodes[-8], nodes[-9]), None),
     Rule('Tela congelado parcialmente', (question_rules[5], question_rules[6]), None),
-    Rule('O desktop diminui?', (question_rules[7], end_rules[-10]), None),
-    
-]
+    Rule('O desktop diminui?', (question_rules[7], nodes[-10]), None),
+    Rule('O 3D está piscando?', (question_rules[7], nodes[6]), None),
+    Rule('Falha no 3D?', (question_rules[9], nodes[4]), None),
+    Rule('A tela está escura ou as cores estão ruins?', (question_rules[8], nodes[5]), None),
+    Rule('Linhas sólidas ou faixas pretas na tela?', (question_rules[10], nodes[3]), None),
+    Rule('Imagem distorcida ou piscando?', (question_rules[11], nodes[2]), None),
+    Rule('A tela está rosa, apagada ou desbalanceada?', (question_rules[12], nodes[0]), None),
+    'wavy':Rule('A imagem está ondulada?', (question_rules[13], nodes[1]), None)
+}
 
 first_rule: Rule = Rule('O seu monitor é de tubo?', (), None)
 

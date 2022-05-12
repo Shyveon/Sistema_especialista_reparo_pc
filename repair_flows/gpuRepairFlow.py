@@ -1,5 +1,5 @@
 from interfaceFlow import InterfaceFlow
-from gpuRepairFlowRules import gpuRepairRules
+from gpuRepairRules import gpuRepairRules
 
 class GpuRepairFlow(InterfaceFlow):
     
