@@ -6,7 +6,7 @@ nodes: list[Rule] = [
     Rule('Taxa de atualização errada, abaixe a resolução da tela e desligue as luzes da sala.', ()),
     Rule('O LCD está estragado, teste com um outro computadores antes de descartar de maneira apropriada', ()),
     Rule('Verifique a bateria dos óculos e se os drivers estão corretos', ()),
-    Rule('Ajuste os controles da tela e verifique o comprimento do cabo e qualidade', ()),
+    Rule('Ajuste os controles da tela, verifique o comprimento do cabo e a sua qualidade', ()),
     Rule('Defina o LCD ou HDTV para uma taxa de atualização que é o dobro do da frequência da grid (BR 60hz, US 60hz, EU 50hz)', ()),
     Rule('Tente uma resolução de tela diferente. Talvez os componentes internos se ajustem mas isso geralmente indica problemas de um monitor falhando', ()),
     Rule('Corrupção de software', ()),
