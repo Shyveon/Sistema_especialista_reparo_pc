@@ -1,0 +1,5 @@
+ansi_prefix = '\033['
+reset_color = f'{ansi_prefix}0m'
+clear_console = f'{ansi_prefix}H{ansi_prefix}J'
+green = f'{ansi_prefix}32m'
+red = f'{ansi_prefix}31m'

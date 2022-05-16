@@ -2,6 +2,6 @@
 from gpuRepairFlow import GpuRepairFlow
 
 def main():
-    GpuRepairFlow.execute()
+    GpuRepairFlow().execute()
 
 main()
